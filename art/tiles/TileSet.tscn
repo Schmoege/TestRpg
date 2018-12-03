@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://art/tiles/tiles.png" type="Texture" id=1]
+[ext_resource path="res://art/house.png" type="Texture" id=2]
+
+[node name="TileSet" type="Node" index="0"]
+
+[node name="Grass" type="Sprite" parent="." index="0"]
+
+position = Vector2( 307.313, 250.527 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 50, 50 )
+_sections_unfolded = [ "Material", "Region", "Transform" ]
+
+[node name="Road" type="Sprite" parent="." index="1"]
+
+position = Vector2( 531.118, 275.58 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 50, 0, 50, 50 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Fence" type="Sprite" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( 823.4, 317.335 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 100, 0, 50, 50 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Fence" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fence/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -17.2826, -24.5547, -17.8638, 24.8418, 15.842, 24.6481, 15.842, -24.5547 )
+
+[node name="House" type="Sprite" parent="." index="3"]
+
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="House" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="House/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -15.3513, -17.3522, -15.0278, 2.05981, 15.3844, 2.70689, 16.0314, -17.0286 )
+
+

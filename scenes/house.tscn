@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/house.gd" type="Script" id=1]
+
+[node name="HouseArea" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+infoText = null
+dialogueText = null
+
+[node name="PlayerInfoCollision" type="CollisionPolygon2D" parent="." index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -14.3812, 4.11935, 15.3839, 4.76642, 15.3839, 17.3842, -14.3812, 17.0607 )
+
+
