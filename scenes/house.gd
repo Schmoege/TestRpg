@@ -22,7 +22,7 @@ func playerOnHouse(body):
 	get_parent().get_node("InfoText").setInfoText(infoText)
 	var dialogue = _getDialoguePlayer()
 	dialogue.dialogueName = dialogueName
-	print(str("Dialogue Name: ", dialogue.dialogueName))
+#	print(str("Dialogue Name: ", dialogue.dialogueName))
 	#body.get_name()
 
 func playerLeftHouse(body):
@@ -30,8 +30,7 @@ func playerLeftHouse(body):
 	get_parent().get_node("InfoText").resetText()
 	var dialoguePlayer = _getDialoguePlayer()
 	dialoguePlayer.dialogueName = ""
-	print(str("New Dialogue Name: ", dialoguePlayer.dialogueName))
+#	print(str("New Dialogue Name: ", dialoguePlayer.dialogueName))
 
 func _getDialoguePlayer():
 	return get_parent().get_node("dialoguePlayer")
-	

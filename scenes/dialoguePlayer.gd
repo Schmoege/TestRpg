@@ -1,48 +1,54 @@
 extends Node
 
-#export (String, FILE, "*.json") var dialogueName = str("res://dialogues/",dialogueName,".json")
 export (String) var dialogueName
-#var dialogueKeys = [] #sidor av dialog
+var dialogueKeys = [] #sidor av dialog
 var dialogueText = ""
-#var dialogueHeader = ""
+var dialogueHeader = ""
 var currentPage = 0;
 
 signal dialogueStarted
 signal dialogueEnded
+signal resumePlay
 
 func _ready():
-	
 	var interface = get_parent().get_node("dialogueUI")
 	connect("dialogueStarted", interface, "showDialogue")
+	connect("dialogueEnded", interface, "showLastPage")
+	var player = get_parent().get_node("playerChar")
+	connect("resumePlay", player, "getMovableAgain")
 
 func startDialogue():
 	currentPage = 0 #återställ för säkerhets skull
 	loadAndIndexDialogue(dialogueName)
+	setDialogue()
 	emit_signal("dialogueStarted")
-#	dialogueText = dialogueKeys[currentPage].text
-#	dialogueHeader = dialogueKeys[currentPage].Header
+	if dialogueKeys.size() == 1:
+		emit_signal("dialogueEnded")
 
 func continueDialogue():
 	currentPage += 1
-	if currentPage == 3:
+	setDialogue()
+	if currentPage == dialogueKeys.size()-1:
 		emit_signal("dialogueEnded")
-#	if currentPage == dialogueKeys.size():
-#		emit_signal("dialogueEnded")
 
 func loadAndIndexDialogue(fileName):
-	if fileName == "dKomettomten":
-		dialogueText = "Komettomten brände sig"
-	else:
-		dialogueText = "Öl"
-#	var file = File.new()
-##	var fileName = str("res://dialogues/",fileName,".json")
-#	print(fileName)
-#	if file.file_exists(fileName):
-#		print("Finns jag?")
-#		file.open(fileName, file.READ)
-#		var dialogue = parse_json(file.get_as_text())
-#		print(dialogue)
-#		dialogueKeys.clear()
-#		for key in dialogue:
-#			dialogueKeys.append(dialogue[key])
-#		return dialogue
+
+	var file = File.new()
+	var path = str("res://dialogues/",fileName,".json")
+	if file.file_exists(path):
+		file.open(path, file.READ)
+		var text = file.get_as_text()
+		var dialogue = parse_json(text)
+		dialogueKeys.clear()
+		for key in dialogue:
+			dialogueKeys.append(dialogue[key])
+		file.close()
+		return dialogue
+
+func setDialogue():
+	dialogueText = dialogueKeys[currentPage].text
+	dialogueHeader = dialogueKeys[currentPage].name
+
+func endDialogue():
+	dialogueKeys.clear() #Töm gammal dialog
+	emit_signal("resumePlay")
