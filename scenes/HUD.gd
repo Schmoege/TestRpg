@@ -19,7 +19,8 @@ func setInfoText(text):
 	$Info.text = text
 
 func hideInfoText():
-	hide()
+	print("FUCK THIS SHIT")
+	$Info.hide()
 
 func showInfoText():
-	show()
+	$Info.show()

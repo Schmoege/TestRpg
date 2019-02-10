@@ -16,6 +16,9 @@ func _ready():
 	connect("dialogueEnded", interface, "showLastPage")
 	var player = get_parent().get_node("playerChar")
 	connect("resumePlay", player, "getMovableAgain")
+	var HUD = get_parent().get_node("InfoText")
+	connect("dialogueStarted", HUD, "hideInfoText")
+	connect("resumePlay", HUD, "showInfoText")
 
 func startDialogue():
 	currentPage = 0 #återställ för säkerhets skull

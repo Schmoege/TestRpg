@@ -22,9 +22,7 @@ func getInput():
 	if Input.is_action_pressed("ui_up"):
 		velocity.y += -1
 	if Input.is_action_just_pressed("ui_select") && onHouse:
-		var dialoguePlayer = get_parent().get_node("dialoguePlayer")
-		dialoguePlayer.startDialogue()
-		isOccupied = true
+		startDialogue()
 		return
 	velocity = velocity.normalized() * speed
 
@@ -36,6 +34,13 @@ func _process(delta):
 func isOnHouse():
 	onHouse = true
 	print(str(onHouse))
+func leftHouse():
+	onHouse = false
 
 func getMovableAgain():
 	isOccupied = false
+
+func startDialogue():
+	var dialoguePlayer = get_parent().get_node("dialoguePlayer")
+	dialoguePlayer.startDialogue()
+	isOccupied = true

@@ -23,6 +23,7 @@ func setText():
 
 func showDialogue():
 	$Block.show()
+	$Block/Button.grab_focus()
 	setText()
 
 func showLastPage():

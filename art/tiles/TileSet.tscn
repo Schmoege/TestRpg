@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://art/tiles/tiles.png" type="Texture" id=1]
 [ext_resource path="res://art/house.png" type="Texture" id=2]
 
-[node name="TileSet" type="Node" index="0"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 24.6856, 23.6593 )
+
+[node name="TileSet" type="Node"]
 
 [node name="Grass" type="Sprite" parent="." index="0"]
 
@@ -47,6 +52,7 @@ polygon = PoolVector2Array( -17.2826, -24.5547, -17.8638, 24.8418, 15.842, 24.64
 
 [node name="House" type="Sprite" parent="." index="3"]
 
+editor/display_folded = true
 texture = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="House" index="0"]
@@ -63,5 +69,35 @@ bounce = 0.0
 
 build_mode = 0
 polygon = PoolVector2Array( -15.3513, -17.3522, -15.0278, 2.05981, 15.3844, 2.70689, 16.0314, -17.0286 )
+
+[node name="PubFloor" type="Sprite" parent="." index="4"]
+
+position = Vector2( 606.852, 99.3073 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 150, 0, 50, 50 )
+_sections_unfolded = [ "Region", "Z Index" ]
+
+[node name="PubWall" type="Sprite" parent="." index="5"]
+
+position = Vector2( 340.093, 157.803 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 200, 0, 50, 50 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PubWall" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PubWall/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
 
 

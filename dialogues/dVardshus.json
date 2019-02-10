@@ -1,3 +1,4 @@
 {
-    "dialog" : {"name": "Värdshuset", "text": "Vi har stängt."}
+    "dialog1" : {"name": "Greger, Barens mästare", "text": "Vi har stängt."},
+	"dialog2" : {"name": "Greger, Barens mästare", "text": "Ingen öl för dig."}
   }

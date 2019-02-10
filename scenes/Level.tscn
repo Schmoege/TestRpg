@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://art/tiles/tilesetGrassRoadFence.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/PlayerChar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/dialoguePlayer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/house.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/dialogueUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Pub.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/dialogueUI.tscn" type="PackedScene" id=7]
 
 [node name="Level" type="Node" index="0"]
 
@@ -38,6 +39,8 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="InfoText" parent="." index="2" instance=ExtResource( 3 )]
 
+layer = 2
+
 [node name="dialoguePlayer" parent="." index="3" instance=ExtResource( 4 )]
 
 [node name="Vardshus" parent="." index="4" instance=ExtResource( 5 )]
@@ -45,7 +48,8 @@ _sections_unfolded = [ "Z Index" ]
 position = Vector2( 326.001, 124.501 )
 scale = Vector2( 1.00001, 1.42188 )
 infoText = "Värdshus"
-dialogueName = "dVardshus"
+dialogueName = ""
+newScene = ExtResource( 6 )
 
 [node name="Tomtehus" parent="." index="5" instance=ExtResource( 5 )]
 
@@ -53,7 +57,8 @@ position = Vector2( 426.001, 125.501 )
 scale = Vector2( 1, 1.23437 )
 infoText = "Komettomtens hus"
 dialogueName = "dKomettomten"
+hasDialogue = true
 
-[node name="dialogueUI" parent="." index="6" instance=ExtResource( 6 )]
+[node name="dialogueUI" parent="." index="6" instance=ExtResource( 7 )]
 
 
